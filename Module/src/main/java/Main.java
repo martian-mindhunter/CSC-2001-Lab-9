@@ -61,4 +61,9 @@ public class Main {
 
     }
 
+    // Quick sort method given int array
+    public static int[] quickSort(int[] array){
+
+    }
+
 }
