@@ -1,20 +1,64 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    // add six to a number
-    public static int addSix(int a){
-        return a + 6;
-    }
 
-    static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
+    // comparing merge sort using arrays to quick sort
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + Main.addSix(i));
+    // Merge sort that gives sorted int array
+    public static int[] mergeSort(int[] array){
+
+        if(array.length <= 1){
+            return array;
         }
+
+            int mid = array.length / 2;
+            System.out.println(mid);
+            int[] firstHalf = new int[mid];
+            System.out.println(array.length - mid);
+            int[] secondHalf = new int[array.length - mid];
+
+            for(int j = 0; j < firstHalf.length; j++){
+                firstHalf[j] = array[j];
+                System.out.println("First Half: " + firstHalf[j]);
+            }
+
+            for(int j = 0; j < secondHalf.length; j++){
+                secondHalf[j] = array[j + mid];
+                System.out.println("Second Half: " + secondHalf[j]);
+            }
+
+            firstHalf = mergeSort(firstHalf);
+            secondHalf = mergeSort(secondHalf);
+
+            return mergeHelper(firstHalf, secondHalf);
+
     }
+
+    // Helper method for merge that sorts between two given arrays & returns single array
+    public static int[] mergeHelper(int[] left, int[] right){
+
+        int sorted[] = new int[left.length + right.length];
+        int i = 0, j = 0, k = 0;
+
+        while (i < left.length && j < right.length) {
+            if (left[i] <= right[j]) {
+                sorted[k++] = left[i++];
+            } else {
+                sorted[k++] = right[j++];
+            }
+        }
+
+        while (i < left.length) {
+            sorted[k++] = left[i++];
+        }
+
+        while (j < right.length) {
+            sorted[k++] = right[j++];
+        }
+
+        for(int p = 0; p < sorted.length; p++){
+            System.out.println(sorted[p]);
+        }
+        return sorted;
+
+    }
+
 }
